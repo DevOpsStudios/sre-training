@@ -1,6 +1,11 @@
 # sre-training
+
+Srikanth
+Daniel Jeyaseelan
+Suresh Kumar
 PallaviP added
 srini ambati
+>>>>>> main
 Vasanth Shanmugam
 >>>>>> main
 Ankit Bhatti
