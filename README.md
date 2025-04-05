@@ -1,12 +1,14 @@
 # sre-training
-
+<<<<<< feature/vijay1
+VijayKumar1234
 Srikanth
 Daniel Jeyaseelan
 Suresh Kumar
 PallaviP added
 srini ambati
->>>>>> main
+>>>>> main
 Vasanth Shanmugam
+>>>>> main
 >>>>>> main
 Ankit Bhatti
 Daniel Jeyaseelan
