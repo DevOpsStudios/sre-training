@@ -1,2 +1,2 @@
 # sre-training
-srini-ambati
+srini-am
