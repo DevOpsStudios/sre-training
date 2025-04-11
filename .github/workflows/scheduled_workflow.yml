@@ -1,0 +1,16 @@
+name: Scheduled Workflow
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # Every day at 3:00 AM UTC
+
+jobs:
+  scheduled-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Say Hello on Schedule
+        run: echo "⏰ Hello! This job ran on a schedule at 3 AM UTC."
