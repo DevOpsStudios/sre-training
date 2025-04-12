@@ -1,0 +1,23 @@
+name: LittlesLaw Site Health Check
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  check-littleslaw-site:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check LittlesLaw site status
+        run: |
+          echo "🔍 Checking https://littleslawacademy.github.io/learning.html/..."
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://littleslawacademy.github.io/learning.html/)
+          
+          if [ "$STATUS_CODE" -ne 200 ]; then
+            echo "❌ Site is down or unreachable (HTTP $STATUS_CODE)"
+            exit 1
+          else
+            echo "✅ LittlesLaw site is up (HTTP 200)"
+          fi
