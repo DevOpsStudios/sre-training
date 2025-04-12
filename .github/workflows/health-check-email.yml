@@ -1,0 +1,43 @@
+name: LittlesLaw Site Health Check
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+  workflow_dispatch:
+
+jobs:
+  check-littleslaw-site:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check LittlesLaw site status
+        id: health
+        run: |
+          echo "🔍 Checking https://littleslawacademy.github.io/learning.html/..."
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://littleslawacademy.github.io/learning.html/)
+          
+          if [ "$STATUS_CODE" -ne 200 ]; then
+            echo "❌ Site is down or unreachable (HTTP $STATUS_CODE)"
+            echo "status=fail" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "✅ Site is up (HTTP 200)"
+            echo "status=ok" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send email if site is down
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: 🚨 LittlesLaw site is down!
+          to: ${{ secrets.EMAIL_RECIPIENT }}
+          from: GitHub Actions <${{ secrets.EMAIL_USERNAME }}>
+          content_type: text/plain
+          body: |
+            The health check for https://littleslawacademy.github.io/learning.html/ has failed.
+            Please check the site status.
+
