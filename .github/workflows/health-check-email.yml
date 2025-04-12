@@ -14,7 +14,7 @@ jobs:
         id: health
         run: |
           echo "🔍 Checking https://littleslawacademy.github.io/learning.html/..."
-          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://littleslawacademy.github.io/learning.html/)
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://littleslawacademy.github.io/learning.htm)
           
           if [ "$STATUS_CODE" -ne 200 ]; then
             echo "❌ Site is down or unreachable (HTTP $STATUS_CODE)"
