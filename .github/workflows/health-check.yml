@@ -2,8 +2,7 @@ name: LittlesLaw Site Health Check
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Every 5 minutes
-  workflow_dispatch:  # Allows manual trigger
+    - cron: '*/1 * * * *'  # Every 5 minutes
 
 jobs:
   check-littleslaw-site:
