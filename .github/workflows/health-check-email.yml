@@ -1,4 +1,4 @@
-name: LittlesLaw Site Health Check
+name: LittlesLaw Site Health Check & email
 
 on:
   schedule:
